@@ -5,7 +5,7 @@ import { BsFillCalendar3EventFill, BsFillPaletteFill, BsFillPeopleFill, BsFillCu
 const Feature = () => {
     return (
         <div>
-             <div className="mt-5 ms-5 me-5">
+             <div className="mt-5 lg-ms-5 lg-me-5">
         <h1 className="mt-5 text-center fw-bolder">Get a many interesting features</h1>
         <p className="mt-3 text-center fw-bold text-secondary">
           Here you find beat deal our food iteam like menu food variation fast

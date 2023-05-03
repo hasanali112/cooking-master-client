@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Button } from "react-bootstrap";
 import Feature from "./Feature";
+import ServicePackage from "./ServicePackage";
 
 
 const Home = () => {
@@ -43,6 +44,9 @@ const Home = () => {
       {/* interesting feature add-extra section on the ui */}
 
       <Feature></Feature>
+
+      {/* subcription package- add another section */}
+      <ServicePackage></ServicePackage>
     </div>
   );
 };
