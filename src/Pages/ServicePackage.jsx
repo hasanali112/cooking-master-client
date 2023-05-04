@@ -30,7 +30,7 @@ const ServicePackage = () => {
                 Get best cooking food
               </ListGroup.Item>
               <Card.Body className="mx-auto">
-                <Button variant="warning" className="px-5 fw-semibold">
+                <Button variant="danger" className="px-5 fw-semibold">
                   Select
                 </Button>
               </Card.Body>
@@ -54,7 +54,7 @@ const ServicePackage = () => {
                 Get best cooking food
               </ListGroup.Item>
               <Card.Body className="mx-auto">
-                <Button variant="warning" className="px-5 fw-semibold">
+                <Button variant="danger" className="px-5 fw-semibold">
                   Select
                 </Button>
               </Card.Body>
@@ -78,7 +78,7 @@ const ServicePackage = () => {
                 Get best cooking food
               </ListGroup.Item>
               <Card.Body className="mx-auto">
-                <Button variant="warning" className="px-5 fw-semibold">
+                <Button variant="danger" className="px-5 fw-semibold">
                   Select
                 </Button>
               </Card.Body>

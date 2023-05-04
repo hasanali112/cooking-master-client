@@ -1,0 +1,13 @@
+.cook-card{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 50px;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+
+.cook-container{
+    margin-bottom: 100px;
+    margin-top: 100px; 
+}

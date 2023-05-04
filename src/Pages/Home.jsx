@@ -6,17 +6,18 @@ import Col from "react-bootstrap/Col";
 import { Button } from "react-bootstrap";
 import Feature from "./Feature";
 import ServicePackage from "./ServicePackage";
-
+import "./CSS/Shared.css";
+import Card from "react-bootstrap/Card";
 
 const Home = () => {
-  const [cookDataLoader, setCookDataLoader] =useState([])
-  console.log(cookDataLoader)
+  const [cookDataLoader, setCookDataLoader] = useState([]);
+  console.log(cookDataLoader);
 
- useEffect(()=>{
-  fetch('http://localhost:5000/cook')
-  .then(res=> res.json())
-  .then(data=> setCookDataLoader(data))
- },[])
+  useEffect(() => {
+    fetch("http://localhost:5000/cook")
+      .then((res) => res.json())
+      .then((data) => setCookDataLoader(data));
+  }, []);
 
   return (
     <div>
@@ -54,11 +55,38 @@ const Home = () => {
 
       <Feature></Feature>
 
-      {/* subcription package- add another section */}
-      <ServicePackage></ServicePackage>
+      {/* 6 card show in ui */}
+      <div className="cook-container">
+        <h3 className="text-center fw-bolder fs-1">Let's meet the expart</h3>
+        <p className="text-center fw-semibold text-secondary">Meet our Food & Drink experts· Recommended you for felling best test</p>
+
+        <div className="cook-card">
+          {cookDataLoader.map((cookData) => (
+            <div key={cookData.id}>
+              <Card style={{ width: "18rem" }} className="mb-3 bg-light">
+                <Card.Img variant="top" src={cookData.chef_picture} />
+                <Card.Body>
+                  <Card.Title>{cookData.chef_name}</Card.Title>
+                  <Card.Text>
+                       <div>
+                          <h6 className="text-secondary">Years of experience: <span className="fw-bold">{cookData.years_of_experience}</span> </h6>
+                          <h6 className="text-secondary">Numbers of recipes: <span className="fw-bold">{cookData.number_of_recipes}</span></h6>
+                          <h6 className="text-secondary">Likes: <span className="fw-bold">{cookData.likes}</span></h6>
+                       </div>
+                  </Card.Text>
+                  <Button variant="danger">View Recipes</Button>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+
+
+      {/* our subcription package */}
+       <ServicePackage></ServicePackage>
     </div>
   );
 };
 
 export default Home;
-
