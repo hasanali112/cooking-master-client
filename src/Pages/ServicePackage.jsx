@@ -11,7 +11,7 @@ const ServicePackage = () => {
     <div className="mb-5">
       <h1 className="text-center mb-5">Choose your best package</h1>
       <Container>
-        <Row>
+        <Row >
           <Col lg={4}>
             <Card style={{ width: "18rem" }} className="bg-light">
               <Card.Title className="text-center bg-dark fw-semibold fs-2 bg-opacity-10 p-2">

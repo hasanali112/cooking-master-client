@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import background from "../assets/bg.jpg";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -9,6 +9,15 @@ import ServicePackage from "./ServicePackage";
 
 
 const Home = () => {
+  const [cookDataLoader, setCookDataLoader] =useState([])
+  console.log(cookDataLoader)
+
+ useEffect(()=>{
+  fetch('http://localhost:5000/cook')
+  .then(res=> res.json())
+  .then(data=> setCookDataLoader(data))
+ },[])
+
   return (
     <div>
       <div className="bg-secondary bg-opacity-10">
