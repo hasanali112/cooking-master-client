@@ -6,10 +6,19 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import './CSS/Shared.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ViewRecepe = () => {
   const cookDetail = useLoaderData();
   console.log(cookDetail);
+
+  const handleClick = event => {
+    event.currentTarget.disabled = true;
+    console.log('button clicked');
+    toast("Button click!")
+  };
+
   return (
     <div>
       <div className="bg-danger bg-opacity-25">
@@ -66,7 +75,8 @@ const ViewRecepe = () => {
                   </div>
                    <p className="text-secondary mt-3 fw-bold">Rating: {recipe.rating}</p>
                 </Card.Text>
-                <Button variant="danger">Favorite button</Button>
+                <Button onClick={handleClick} variant="danger">Favorite button</Button>
+                <ToastContainer />
               </Card.Body>
             </Card>
           </div>
