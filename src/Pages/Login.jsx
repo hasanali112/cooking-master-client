@@ -3,11 +3,13 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {logIn} = useContext(AuthContext)
   const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handlelogged = event =>{
     event.preventDefault();
@@ -18,7 +20,7 @@ const Login = () => {
     .then(result=>{
       const loggedUser= result.user;
       console.log(loggedUser)
-      navigate('/')
+      navigate(from, {replace: true})
     })
     .catch(error=>{
       console.log(error.message)
@@ -41,7 +43,7 @@ const Login = () => {
           <Form.Control type="password" name="password" placeholder="Password" required/>
         </Form.Group>
         <Button variant="danger" type="submit">
-          Submit
+          Login
         </Button>
       </Form>
       <small className="fw-semibold">New to cookMaster? <Link to='/register'>Register</Link> </small>
