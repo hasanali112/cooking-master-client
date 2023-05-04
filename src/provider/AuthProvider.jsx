@@ -12,16 +12,20 @@ const AuthProvider = ({children}) => {
     const [user, setUser]= useState(null);
     const [loading, setLoading] = useState(true)
 
+    // for signup email and password
     const createUser = (email, password)=>{
         setLoading(true)
         return createUserWithEmailAndPassword (auth, email, password);
     }
-
+    
+    // for signin email and password
     const logIn =(email, password)=>{
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+
+    //observe user
     const userUpdateData =(user,  name, photo)=>{
         setLoading(true)
        return  updateProfile (user, {
@@ -30,18 +34,21 @@ const AuthProvider = ({children}) => {
      })
      
  }
-
+ 
+    //logout from user
     const logOut = ()=>{
         setLoading(true)
         return signOut(auth)
     }
 
+    //google signin
     const handleGoogleSignIn = ( ) =>{
         setLoading(true)
        return signInWithPopup (auth, provider)   
     }
 
 
+     //github signin
     const handleGitHubSignIn= ()=>{
         setLoading(true)
        return signInWithPopup(auth, gitHubProvider)

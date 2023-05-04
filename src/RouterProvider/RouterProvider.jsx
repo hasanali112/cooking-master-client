@@ -7,12 +7,14 @@ import ViewRecepe from "../Pages/ViewRecepe";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../Pages/Error";
 
 
 const router = createBrowserRouter ([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement:<Error></Error>,
         children:[
             {
                 path:'/',
