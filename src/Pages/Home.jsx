@@ -8,6 +8,7 @@ import Feature from "./Feature";
 import ServicePackage from "./ServicePackage";
 import "./CSS/Shared.css";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [cookDataLoader, setCookDataLoader] = useState([]);
@@ -74,7 +75,9 @@ const Home = () => {
                           <h6 className="text-secondary">Likes: <span className="fw-bold">{cookData.likes}</span></h6>
                        </div>
                   </Card.Text>
-                  <Button variant="danger">View Recipes</Button>
+                  <Link to={`/cookdetail/${cookData.id}`}>
+                        <Button variant="danger">View Recipes</Button>
+                  </Link> 
                 </Card.Body>
               </Card>
             </div>
