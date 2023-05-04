@@ -2,14 +2,22 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaHotel} from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import Button from 'react-bootstrap/Button';
 
 
 const Header = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logOut} = useContext(AuthContext)
+
+   const handleLogout = () =>{
+      logOut()
+      .then()
+      .catch(error=>{
+        console.log(error.message)
+      })
+   }
 
   return (
     <div>
@@ -28,10 +36,10 @@ const Header = () => {
              
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">{user.displayName}</Nav.Link>
+              <Nav.Link href="#deets"></Nav.Link>
              
-               {user ? <Button variant="secondary">Log Out</Button> :
-               <Button variant="secondary">Login</Button>}
+               {user ? <Button onClick={handleLogout} variant="secondary">Log Out</Button> : <Link to='/login'><Button variant="secondary">Login</Button></Link>}
+              
             </Nav>
           </Navbar.Collapse>
         </Container>

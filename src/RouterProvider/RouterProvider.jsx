@@ -6,6 +6,7 @@ import Blog from "../Pages/Blog";
 import ViewRecepe from "../Pages/ViewRecepe";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter ([
@@ -23,7 +24,7 @@ const router = createBrowserRouter ([
             },
             {
                 path:'/cookdetail/:id',
-                element:<ViewRecepe></ViewRecepe>,
+                element:<PrivateRoute><ViewRecepe></ViewRecepe></PrivateRoute>,
                 loader:({params})=> fetch(`http://localhost:5000/cook/${params.id}`)
             },
             {

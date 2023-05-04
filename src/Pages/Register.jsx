@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const {createUser} = useContext(AuthContext)
@@ -75,6 +76,7 @@ const Register = () => {
           Submit
         </Button>
       </Form>
+      <small className="fw-semibold">Allready have an account? <Link to='/login'>Login</Link> </small>
     </Container>
   );
 };
