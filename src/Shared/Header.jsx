@@ -6,10 +6,13 @@ import { Link, NavLink } from "react-router-dom";
 import { FaHotel} from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import Button from 'react-bootstrap/Button';
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 
 const Header = () => {
   const {user, logOut} = useContext(AuthContext)
+  console.log(user)
 
    const handleLogout = () =>{
       logOut()
@@ -36,10 +39,14 @@ const Header = () => {
              
             </Nav>
             <Nav>
-              <Nav.Link href="#deets"></Nav.Link>
+             <div className="d-flex justify-content-center align-items-center">
+              {user && <div> <a data-tooltip-id="my-tooltip" data-tooltip-content= {user.displayName}>
+                  <img src={user.photoURL} alt="" className="container-fluid rounded" width="30" height="30"/>
+               </a> 
+               <Tooltip id="my-tooltip" /></div>}
              
                {user ? <Button onClick={handleLogout} variant="secondary">Log Out</Button> : <Link to='/login'><Button variant="secondary">Login</Button></Link>}
-              
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

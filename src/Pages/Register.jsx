@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
 
+
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser, userUpdateData} = useContext(AuthContext)
+  const [error, setError] = useState('')
 
   const handleRegister = event =>{
+    setError('')
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -17,15 +20,24 @@ const Register = () => {
     const password = form.password.value;
     createUser(email,password)
     .then(result=>{
+      setError('')
       const createdUser= result.user;
       console.log(createdUser)
+      userUpdateData(result.user, name, photo)
+      .then(()=>{ 
+        console.log("update")
+      })
+      .catch(error=>{
+        console.log(error.message)
+      })
     })
     .catch(error=>{
       console.log(error.message)
+      setError(error.message)
     })
   }
 
-
+  
 
 
   return (
@@ -72,11 +84,15 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
+        <Link to='/login'>
         <Button variant="danger" type="submit">
           Submit
         </Button>
+        </Link>
+        
       </Form>
       <small className="fw-semibold">Allready have an account? <Link to='/login'>Login</Link> </small>
+       <p className="text-danger">{error}</p>
     </Container>
   );
 };

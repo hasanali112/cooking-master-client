@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,12 +6,14 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const {logIn} = useContext(AuthContext)
+  const {logIn,  handleGoogleSignIn} = useContext(AuthContext)
   const navigate = useNavigate()
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
+  const [error, setError] = useState('')
 
   const handlelogged = event =>{
+    setError('')
     event.preventDefault();
     const form = event.target;
     const email= form.email.value;
@@ -19,13 +21,23 @@ const Login = () => {
     logIn(email,password)
     .then(result=>{
       const loggedUser= result.user;
-      console.log(loggedUser)
       navigate(from, {replace: true})
     })
     .catch(error=>{
-      console.log(error.message)
+      setError(error.message)
     })
   }
+   
+  const handleGoogleSign = () =>{
+    handleGoogleSignIn ()
+    .then(result =>{
+        const user = result.user;
+        navigate(from, {replace: true})
+    })
+    .catch(error =>{
+        console.log('error massage', error.massage)
+    })
+}
 
 
 
@@ -47,6 +59,13 @@ const Login = () => {
         </Button>
       </Form>
       <small className="fw-semibold">New to cookMaster? <Link to='/register'>Register</Link> </small>
+      <Button onClick={handleGoogleSign} variant="outline-secondary">
+           Log with Google
+        </Button>
+        <Button  variant="outline-secondary">
+           Log in GitHub
+        </Button>
+        <p className="text-danger">{error}</p>
     </Container>
   );
 };
