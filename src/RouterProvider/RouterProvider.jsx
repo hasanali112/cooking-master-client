@@ -8,6 +8,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../Pages/Error";
+import LoadSpin from "../Pages/LoadSpin";
 
 
 const router = createBrowserRouter ([
@@ -36,6 +37,10 @@ const router = createBrowserRouter ([
             {
                 path:'/register',
                 element:<Register></Register>
+            },
+            {
+                path:'/loading',
+                element:<LoadSpin></LoadSpin>
             }
         ]
     }

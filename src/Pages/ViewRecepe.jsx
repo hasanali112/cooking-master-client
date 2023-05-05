@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,6 +8,7 @@ import Card from "react-bootstrap/Card";
 import './CSS/Shared.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadSpin from "./LoadSpin";
 
 const ViewRecepe = () => {
   const cookDetail = useLoaderData();
@@ -19,6 +20,11 @@ const ViewRecepe = () => {
     toast("Button click!")
   };
 
+  const navigation = useNavigation()
+   console.log(navigation)
+   if(navigation.state === 'loading'){
+    return <LoadSpin></LoadSpin>
+   } 
   return (
     <div>
       <div className="bg-danger bg-opacity-25">

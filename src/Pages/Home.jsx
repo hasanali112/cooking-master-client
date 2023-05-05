@@ -8,7 +8,8 @@ import Feature from "./Feature";
 import ServicePackage from "./ServicePackage";
 import "./CSS/Shared.css";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
+import LoadSpin from "./LoadSpin";
 
 const Home = () => {
   const [cookDataLoader, setCookDataLoader] = useState([]);
@@ -19,6 +20,12 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setCookDataLoader(data));
   }, []);
+
+   const navigation = useNavigation()
+   console.log(navigation)
+   if(navigation.state === 'loading'){
+    return <LoadSpin></LoadSpin>
+   }
 
   return (
     <div>
