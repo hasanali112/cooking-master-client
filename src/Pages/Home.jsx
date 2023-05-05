@@ -20,7 +20,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://localhost:5000/cook")
+    fetch("https://cook-master-server.vercel.app/cook")
       .then((res) => res.json())
       .then((data) => setCookDataLoader(data));
       setLoading(false)
@@ -79,9 +79,7 @@ const Home = () => {
         <div className="cook-card"> {loading ? <LoadSpin/> : <>{cookDataLoader.map((cookData) => (
             <div key={cookData.id}>
               <Card style={{ width: "18rem" }} className="mb-3 bg-light">
-              <LazyLoad>
                 <Card.Img variant="top" src={cookData.chef_picture} />
-              </LazyLoad>
                 <Card.Body>
                   <Card.Title>{cookData.chef_name}</Card.Title>
                   <Card.Text>

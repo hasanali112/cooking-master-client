@@ -28,7 +28,7 @@ const router = createBrowserRouter ([
             {
                 path:'/cookdetail/:id',
                 element:<PrivateRoute><ViewRecepe></ViewRecepe></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/cook/${params.id}`)
+                loader:({params})=> fetch(`https://cook-master-server.vercel.app/cook/${params.id}`)
             },
             {
                 path:'/login',
