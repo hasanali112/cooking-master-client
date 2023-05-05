@@ -9,6 +9,7 @@ import './CSS/Shared.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadSpin from "./LoadSpin";
+import LazyLoad from 'react-lazy-load';
 
 const ViewRecepe = () => {
   const cookDetail = useLoaderData();
@@ -34,11 +35,13 @@ const ViewRecepe = () => {
         <Container>
           <Row>
             <Col lg={5}>
+            <LazyLoad>
               <img
                 src={cookDetail.chef_picture}
                 alt=""
                 className="container-fluid rounded"
               />
+              </LazyLoad>
             </Col>
             <Col lg={7}>
               <h4 className="mt-5 ms-3 fw-bolder fs-2">

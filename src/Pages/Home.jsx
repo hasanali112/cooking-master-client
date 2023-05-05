@@ -10,22 +10,27 @@ import "./CSS/Shared.css";
 import Card from "react-bootstrap/Card";
 import { Link, useNavigation } from "react-router-dom";
 import LoadSpin from "./LoadSpin";
+import LazyLoad from 'react-lazy-load';
+
+
 
 const Home = () => {
   const [cookDataLoader, setCookDataLoader] = useState([]);
   console.log(cookDataLoader);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch("http://localhost:5000/cook")
       .then((res) => res.json())
       .then((data) => setCookDataLoader(data));
+      setLoading(false)
   }, []);
 
-   const navigation = useNavigation()
-   console.log(navigation)
-   if(navigation.state === 'loading'){
+  const handleNavigation = useNavigation()
+   console.log(handleNavigation)
+   if(handleNavigation.state === 'loading'){
     return <LoadSpin></LoadSpin>
-   }
+   } 
 
   return (
     <div>
@@ -49,11 +54,13 @@ const Home = () => {
               </div>
             </Col>
             <Col lg={7}>
+            <LazyLoad>
               <img
                 src={background}
                 className="container-fluid rounded"
                 alt="cooking chef"
               />
+             </LazyLoad>
             </Col>
           </Row>
         </Container>
@@ -67,12 +74,14 @@ const Home = () => {
       <div className="cook-container">
         <h3 className="text-center fw-bolder fs-1">Let's meet the expart</h3>
         <p className="text-center fw-semibold text-secondary">Meet our Food & Drink experts· Recommended you for felling best test</p>
-
-        <div className="cook-card">
-          {cookDataLoader.map((cookData) => (
+         
+       
+        <div className="cook-card"> {loading ? <LoadSpin/> : <>{cookDataLoader.map((cookData) => (
             <div key={cookData.id}>
               <Card style={{ width: "18rem" }} className="mb-3 bg-light">
+              <LazyLoad>
                 <Card.Img variant="top" src={cookData.chef_picture} />
+              </LazyLoad>
                 <Card.Body>
                   <Card.Title>{cookData.chef_name}</Card.Title>
                   <Card.Text>
@@ -83,13 +92,16 @@ const Home = () => {
                        </div>
                   </Card.Text>
                   <Link to={`/cookdetail/${cookData.id}`}>
-                        <Button variant="danger">View Recipes</Button>
+                        <Button onClick={handleNavigation} variant="danger">View Recipes</Button>
                   </Link> 
                 </Card.Body>
               </Card>
             </div>
-          ))}
+          ))}</>}
+         
+          
         </div>
+      
       </div>
 
 

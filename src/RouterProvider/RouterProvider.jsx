@@ -37,11 +37,8 @@ const router = createBrowserRouter ([
             {
                 path:'/register',
                 element:<Register></Register>
-            },
-            {
-                path:'/loading',
-                element:<LoadSpin></LoadSpin>
             }
+            
         ]
     }
 ])

@@ -3,8 +3,10 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const LoadSpin = () => {
     return (
-        <div className='w-25 mx-auto mt-5'>
+        <div className='container w-25 mx-auto mt-5 d-flex'>
             <Spinner animation="border" variant="primary" />
+            <Spinner animation="border" variant="secondary" />
+            <Spinner animation="border" variant="success" />
         </div>
     );
 };
